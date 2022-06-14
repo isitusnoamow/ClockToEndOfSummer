@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+        html{
+            background-color: #13182c;
+        }
+
+        .clock{
+            width: 800px;
+            height: 800px;
+            background: transparent;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -400px;
+            margin-left: -400px;
+            text-align: center;
+            line-height: 100px;
+            border: solid 4px white;
+        }
+
+
+        .hand{
+            width: 8px;
+            height:370px;
+            background: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -4px;
+            border-radius: 5px;
+            z-index: 100;
+            transform-origin: top;
+            transform: rotate(180deg);
+            opacity: 0.8;
+        }
+
+        h1{
+            font-size: 100px;
+            color: white;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 300;
+            margin-top:200px
+        }
+
+    </style>
+
+    
+</head>
+<body>
+    <div class="clock">
+        <h1>TIME IS LIMITED</h1>
+        <h1 id="remain">X DAYS LEFT</h2>
+        <div class="hand" id="hand"></div>
+
+    </div>
+    <script>
+        let start = new Date('06/02/2022');
+        let current = new Date(Date.now());
+        let end = new Date('08/15/2022');
+        let total = end.getTime() - start.getTime();
+        let currentDiff = current.getTime() - start.getTime();
+        let remaining = end.getTime() - current.getTime();
+        let daysleft = Math.ceil(remaining / (1000 * 3600 * 24));
+        document.getElementById('remain').innerHTML = daysleft + ' DAYS LEFT';
+        document.title = daysleft + ' DAYS LEFT';
+        let degree = ((currentDiff/total)*360) + 180;
+        document.getElementById("hand").style.transform = "rotate("+degree+"deg)";
+    </script>
+    
+</body>
+</html>
